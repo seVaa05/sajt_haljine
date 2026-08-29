@@ -225,7 +225,7 @@ function App() {
 
         <address className="footer-contact">
           <a
-            href="https://www.instagram.com/example"
+            href="https://www.instagram.com/nallynbynatasa/"
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
@@ -236,7 +236,7 @@ function App() {
               <circle cx="17.5" cy="6.5" r="1" />
             </svg>
           </a>
-          <a href="mailto:example@example.com" aria-label="Email">
+          <a href="mailto:natasanikolic653@gmail.com" aria-label="Email">
             <svg aria-hidden="true" viewBox="0 0 24 24">
               <rect x="3" y="5" width="18" height="14" rx="2" />
               <path d="m4 7 8 6 8-6" />
