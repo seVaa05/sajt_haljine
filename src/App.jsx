@@ -152,7 +152,7 @@ function App() {
         <button
           className="menu-toggle"
           type="button"
-          aria-controls="main-navigation"
+          aria-controls="mobile-navigation"
           aria-expanded={isMenuOpen}
           aria-label={isMenuOpen ? "Zatvori meni" : "Otvori meni"}
           onClick={() => setIsMenuOpen((open) => !open)}
@@ -162,20 +162,7 @@ function App() {
           <span />
         </button>
 
-        {isMenuOpen && (
-          <button
-            className="menu-backdrop"
-            type="button"
-            aria-label="Zatvori meni"
-            onClick={() => setIsMenuOpen(false)}
-          />
-        )}
-
-        <nav
-          className={`main-nav ${isMenuOpen ? "is-open" : ""}`}
-          id="main-navigation"
-          aria-label="Glavna navigacija"
-        >
+        <nav className="main-nav" aria-label="Glavna navigacija">
           <a href="#pocetna" onClick={showHomePage}>Pocetna</a>
           <a href="#o-meni" onClick={showHomePage}>O meni</a>
           <a className="new-dresses-link" href="#sve-haljine" onClick={showAllDressesPage}>
@@ -184,6 +171,36 @@ function App() {
           <a href="#haljine" onClick={showHomePage}>Haljine</a>
         </nav>
       </header>
+
+      {isMenuOpen && (
+        <button
+          className="menu-backdrop"
+          type="button"
+          aria-label="Zatvori meni"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
+      <nav
+        className={`mobile-nav ${isMenuOpen ? "is-open" : ""}`}
+        id="mobile-navigation"
+        aria-label="Mobilna navigacija"
+      >
+        <button
+          className="mobile-nav-close"
+          type="button"
+          aria-label="Zatvori meni"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          X
+        </button>
+        <a href="#pocetna" onClick={showHomePage}>Pocetna</a>
+        <a href="#o-meni" onClick={showHomePage}>O meni</a>
+        <a className="new-dresses-link" href="#sve-haljine" onClick={showAllDressesPage}>
+          Sve Haljine
+        </a>
+        <a href="#haljine" onClick={showHomePage}>Haljine</a>
+      </nav>
 
       {page === "home" ? (
         <HomePage />
@@ -203,16 +220,33 @@ function App() {
 
       <footer className="site-footer">
         <div>
-          <p className="eyebrow">Kontakt</p>
-          <h2>Za saradnju i dodatne informacije</h2>
+          <h2>Kontakt</h2>
         </div>
 
         <address className="footer-contact">
-          <a href="https://www.instagram.com/example" target="_blank" rel="noreferrer">
-            Instagram: @example
+          <a
+            href="https://www.instagram.com/example"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" />
+            </svg>
           </a>
-          <a href="mailto:example@example.com">Email: example@example.com</a>
-          <a href="tel:+381601234567">Telefon: +381 60 123 4567</a>
+          <a href="mailto:example@example.com" aria-label="Email">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m4 7 8 6 8-6" />
+            </svg>
+          </a>
+          <a href="tel:+381601234567" aria-label="Telefon">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.2 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.91.32 1.79.59 2.63a2 2 0 0 1-.45 2.11L8 9.71a16 16 0 0 0 6.29 6.29l1.25-1.25a2 2 0 0 1 2.11-.45c.84.27 1.72.47 2.63.59A2 2 0 0 1 22 16.92Z" />
+            </svg>
+          </a>
         </address>
       </footer>
 
