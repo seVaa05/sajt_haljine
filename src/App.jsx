@@ -97,6 +97,7 @@ function App() {
   const [page, setPage] = useState(
     window.location.hash === "#sve-haljine" ? "all-dresses" : "home",
   )
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [pausedRows, setPausedRows] = useState({})
   const [rowOffsets, setRowOffsets] = useState([0, 0, 0])
   const [activeModel, setActiveModel] = useState(null)
@@ -111,11 +112,13 @@ function App() {
   }, [])
 
   const showHomePage = () => {
+    setIsMenuOpen(false)
     setPage("home")
     window.location.hash = "pocetna"
   }
 
   const showAllDressesPage = () => {
+    setIsMenuOpen(false)
     setPage("all-dresses")
     window.location.hash = "sve-haljine"
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -146,7 +149,33 @@ function App() {
           <img className="brand-logo" src={nallynLogo} alt="Nallyn" />
         </a>
 
-        <nav className="main-nav" aria-label="Glavna navigacija">
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-controls="main-navigation"
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? "Zatvori meni" : "Otvori meni"}
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        {isMenuOpen && (
+          <button
+            className="menu-backdrop"
+            type="button"
+            aria-label="Zatvori meni"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+
+        <nav
+          className={`main-nav ${isMenuOpen ? "is-open" : ""}`}
+          id="main-navigation"
+          aria-label="Glavna navigacija"
+        >
           <a href="#pocetna" onClick={showHomePage}>Pocetna</a>
           <a href="#o-meni" onClick={showHomePage}>O meni</a>
           <a className="new-dresses-link" href="#sve-haljine" onClick={showAllDressesPage}>
